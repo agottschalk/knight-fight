@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnm0vvldabwvm"]
+
+[ext_resource type="Script" uid="uid://y3qt31weaisn" path="res://scripts/fight_scene_manager.gd" id="1_ur8l8"]
+[ext_resource type="PackedScene" uid="uid://nty66vivcb1c" path="res://scenes/knight_prefab.tscn" id="5_8ji1m"]
+[ext_resource type="Texture2D" uid="uid://b5uhgjk4ddlaa" path="res://sprites/scenery/outdoor platform.png" id="6_2a8y1"]
+[ext_resource type="Script" uid="uid://cphv21kdiff8a" path="res://scripts/fight_camera_controller.gd" id="6_bfl18"]
+[ext_resource type="SpriteFrames" uid="uid://oqdcgutdqela" path="res://anims/knight.tres" id="6_ur8l8"]
+[ext_resource type="Texture2D" uid="uid://l58f7tlku7bn" path="res://sprites/scenery/clouds and sky.png" id="7_2gorx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f43n0"]
+font_size = 28
+font_color = Color(1, 0, 0, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3qt"]
+size = Vector2(256, 64)
+
+[node name="Root" type="Node2D" node_paths=PackedStringArray("player_1", "player_2")]
+script = ExtResource("1_ur8l8")
+player_1 = NodePath("k1")
+player_2 = NodePath("k2")
+
+[node name="P1 Start" type="Node2D" parent="."]
+
+[node name="P2 Start" type="Node2D" parent="."]
+
+[node name="Fight Text" type="Label" parent="."]
+offset_left = 56.0
+offset_top = 32.0
+offset_right = 312.0
+offset_bottom = 120.0
+text = "sample"
+label_settings = SubResource("LabelSettings_f43n0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 80)
+limit_bottom = 168
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("6_bfl18")
+max_zoom = 2.0
+min_zoom = 1.0
+
+[node name="Sky" type="Sprite2D" parent="Camera2D"]
+z_index = -5
+texture = ExtResource("7_2gorx")
+metadata/_edit_lock_ = true
+
+[node name="k1" parent="." instance=ExtResource("5_8ji1m")]
+position = Vector2(112, 88)
+WALK_SPEED = 20
+DASH_SPEED = 250
+BACKDASH_SPEED = 200
+player_num = 1
+sprites = ExtResource("6_ur8l8")
+
+[node name="k2" parent="." instance=ExtResource("5_8ji1m")]
+position = Vector2(256, 88)
+WALK_SPEED = 20
+DASH_SPEED = 250
+BACKDASH_SPEED = 200
+player_num = 2
+sprites = ExtResource("6_ur8l8")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+z_index = -5
+position = Vector2(184, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_8i3qt")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("6_2a8y1")
+metadata/_edit_lock_ = true

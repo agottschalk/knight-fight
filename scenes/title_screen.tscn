@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtxprinxevrmt"]
+
+[ext_resource type="Texture2D" uid="uid://l58f7tlku7bn" path="res://sprites/scenery/clouds and sky.png" id="3_cs5ya"]
+[ext_resource type="Script" uid="uid://u1d7w1rl3njh" path="res://scripts/start_btn.gd" id="3_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://b5uhgjk4ddlaa" path="res://sprites/scenery/outdoor platform.png" id="6_u26n3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3qt"]
+size = Vector2(256, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sa3yf"]
+font_size = 44
+font_color = Color(1, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Root" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(184, 38)
+zoom = Vector2(0.8, 0.8)
+limit_bottom = 168
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+metadata/_edit_lock_ = true
+
+[node name="Sky" type="Sprite2D" parent="Camera2D"]
+z_index = -5
+texture = ExtResource("3_cs5ya")
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="StaticBody2D" parent="."]
+z_index = -5
+position = Vector2(184, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_8i3qt")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = ExtResource("6_u26n3")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 56.0
+offset_top = -32.0
+offset_right = 311.0
+offset_bottom = 29.0
+text = "Knight-Fight"
+label_settings = SubResource("LabelSettings_sa3yf")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 160.0
+offset_top = 48.0
+offset_right = 206.0
+offset_bottom = 79.0
+text = "Start"
+script = ExtResource("3_s4lrb")
+
+[connection signal="button_up" from="Button" to="Button" method="_on_button_up"]

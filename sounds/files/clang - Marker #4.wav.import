@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c1wxkd5ybsn75"
+path="res://.godot/imported/clang - Marker #4.wav-7cd9dd7241a5321dc693c0c038d71364.sample"
+
+[deps]
+
+source_file="res://sounds/files/clang - Marker #4.wav"
+dest_files=["res://.godot/imported/clang - Marker #4.wav-7cd9dd7241a5321dc693c0c038d71364.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

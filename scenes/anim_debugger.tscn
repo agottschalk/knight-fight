@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://vjdm1oorhc7i"]
+
+[ext_resource type="SpriteFrames" uid="uid://oqdcgutdqela" path="res://anims/knight.tres" id="3_1hdoj"]
+
+[node name="Root" type="Node2D"]
+
+[node name="tiny knight" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 48)
+sprite_frames = ExtResource("3_1hdoj")
+animation = &"Hit"
+autoplay = "Idle"

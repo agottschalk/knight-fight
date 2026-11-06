@@ -1,0 +1,153 @@
+[gd_scene load_steps=25 format=3 uid="uid://nty66vivcb1c"]
+
+[ext_resource type="Script" uid="uid://djh17dgnaut2f" path="res://scripts/Player.gd" id="1_q40kv"]
+[ext_resource type="Shader" uid="uid://clqhtw3upgfv6" path="res://player_sprite.gdshader" id="2_kvgpa"]
+[ext_resource type="SpriteFrames" uid="uid://oqdcgutdqela" path="res://anims/knight.tres" id="3_q40kv"]
+[ext_resource type="Texture2D" uid="uid://b6yxugkybx221" path="res://sprites/icons/knight icons.png" id="4_xtp5v"]
+[ext_resource type="AudioStream" uid="uid://baftnn3d1a5cd" path="res://sounds/streams/ko_sounds.tres" id="5_gk8ll"]
+[ext_resource type="Script" uid="uid://ejsm1iug1dir" path="res://scripts/general_sounds_player.gd" id="6_bbnfa"]
+[ext_resource type="AudioStream" uid="uid://c78ad45x8qlci" path="res://sounds/files/swosh-09.wav" id="7_rv0x2"]
+[ext_resource type="AudioStream" uid="uid://brlx4no3oyxbo" path="res://sounds/files/swosh-13.wav" id="8_tilj3"]
+[ext_resource type="AudioStream" uid="uid://g8tixyqueduf" path="res://sounds/files/swosh-39.wav" id="9_g0tap"]
+[ext_resource type="AudioStream" uid="uid://bdhc5h67cqspg" path="res://sounds/streams/backdash_sounds.tres" id="10_y8pws"]
+[ext_resource type="AudioStream" uid="uid://c1wxkd5ybsn75" path="res://sounds/files/clang - Marker #4.wav" id="11_fhq1b"]
+[ext_resource type="AudioStream" uid="uid://cbr2eia1u3o7w" path="res://sounds/streams/spammable_sounds.tres" id="12_gk8ll"]
+[ext_resource type="AudioStream" uid="uid://45reoitt7vx" path="res://sounds/files/sfx_sounds_impact6.wav" id="12_xtp5v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osnhv"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57w1i"]
+size = Vector2(15, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7psqj"]
+size = Vector2(28, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvuf7"]
+shader = ExtResource("2_kvgpa")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk8ll"]
+atlas = ExtResource("4_xtp5v")
+region = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv0x2"]
+atlas = ExtResource("4_xtp5v")
+region = Rect2(33, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbnfa"]
+atlas = ExtResource("4_xtp5v")
+region = Rect2(22, 0, 11, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tilj3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk8ll")
+}],
+"loop": true,
+"name": &"Blank",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv0x2")
+}],
+"loop": true,
+"name": &"Interrobang",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbnfa")
+}],
+"loop": true,
+"name": &"X",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fgn6i"]
+random_pitch = 1.05
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("7_rv0x2")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y4bv0"]
+random_pitch = 1.05
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("8_tilj3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1a3hy"]
+random_pitch = 1.05
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("9_g0tap")
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_q40kv")
+
+[node name="Body Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_osnhv")
+metadata/_edit_lock_ = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+input_pickable = false
+monitorable = false
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_57w1i")
+metadata/_edit_lock_ = true
+
+[node name="Attackbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+input_pickable = false
+monitoring = false
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox"]
+shape = SubResource("RectangleShape2D_7psqj")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_yvuf7")
+sprite_frames = ExtResource("3_q40kv")
+animation = &"Idle"
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_tilj3")
+animation = &"Blank"
+autoplay = "Blank"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -12.0
+max_value = 1.0
+step = 0.017
+show_percentage = false
+
+[node name="Hit Sounds Player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gk8ll")
+pitch_scale = 0.5
+bus = &"Hits"
+
+[node name="General Sounds Player" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("6_bbnfa")
+light_dash = SubResource("AudioStreamRandomizer_fgn6i")
+medium_dash = SubResource("AudioStreamRandomizer_y4bv0")
+heavy_dash = SubResource("AudioStreamRandomizer_1a3hy")
+backdash = ExtResource("10_y8pws")
+parry = ExtResource("11_fhq1b")
+whiff_parry = ExtResource("12_gk8ll")
+block = ExtResource("12_xtp5v")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
