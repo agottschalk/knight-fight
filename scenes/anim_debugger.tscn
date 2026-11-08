@@ -1,11 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://vjdm1oorhc7i"]
+[gd_scene load_steps=4 format=3 uid="uid://vjdm1oorhc7i"]
 
+[ext_resource type="PackedScene" uid="uid://b2x450wadsklu" path="res://scenes/fire_weapon_effect.tscn" id="2_1hdoj"]
 [ext_resource type="SpriteFrames" uid="uid://oqdcgutdqela" path="res://anims/knight.tres" id="3_1hdoj"]
+[ext_resource type="PackedScene" uid="uid://estm0hjmknin" path="res://scenes/lightning_weapon_effect.tscn" id="3_j3am5"]
 
 [node name="Root" type="Node2D"]
 
 [node name="tiny knight" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 48)
+position = Vector2(96, 40)
 sprite_frames = ExtResource("3_1hdoj")
-animation = &"Hit"
+animation = &"Dash"
 autoplay = "Idle"
+
+[node name="fire" parent="tiny knight" instance=ExtResource("2_1hdoj")]
+position = Vector2(19, 4)
+
+[node name="lightning" parent="tiny knight" instance=ExtResource("3_j3am5")]
+position = Vector2(19, 4)

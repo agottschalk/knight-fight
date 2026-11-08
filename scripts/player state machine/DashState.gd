@@ -9,6 +9,7 @@ func enter() -> void:
 	player.attack_priority = 1
 	active_frames = player.charge_time * player.CHARGE_RATIO
 	player.x_vel = player.DASH_SPEED
+	player.activate_weapon_effect()
 	player.attackbox.set_deferred(&"disabled", false)
 	player.play_dash_sound()
 	anim.play(&"Dash")
@@ -32,5 +33,6 @@ func transition() -> void:
 		player.change_state(&"DashEnd")
 
 func leave() -> void:
+	player.deactivate_weapon_effect()
 	player.set_deferred(&"attack_priority", -1)
 	player.attackbox.set_deferred(&"disabled", true)

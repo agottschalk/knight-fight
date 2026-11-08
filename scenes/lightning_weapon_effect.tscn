@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://estm0hjmknin"]
+
+[ext_resource type="Texture2D" uid="uid://be7ttbf1im454" path="res://sprites/lingtning particle.png" id="1_p0ir2"]
+[ext_resource type="Script" uid="uid://bchcb6h25yohg" path="res://scripts/weapon_effect_controller.gd" id="2_q4bn1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yj56x"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 90.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(-200, 0, 0)
+scale_min = 0.39999998
+scale_max = 0.59999996
+color = Color(1, 1, 1, 0.7137255)
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="Gradient" id="Gradient_1hdoj"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j3am5"]
+gradient = SubResource("Gradient_1hdoj")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="lightning" type="GPUParticles2D"]
+emitting = false
+amount = 15
+texture = ExtResource("1_p0ir2")
+lifetime = 0.3
+preprocess = 0.05
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_yj56x")
+script = ExtResource("2_q4bn1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = 3
+position = Vector2(-5, 0)
+enabled = false
+color = Color(1, 1, 0.32941177, 1)
+texture = SubResource("GradientTexture2D_j3am5")
