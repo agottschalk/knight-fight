@@ -1,11 +1,23 @@
-[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://c8grouxhptsdl"]
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://c8grouxhptsdl"]
+
+[sub_resource type="Curve" id="Curve_3slg4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jmkn3"]
+curve = SubResource("Curve_3slg4")
 
 [resource]
 particle_flag_disable_z = true
-direction = Vector3(-0.2, -1, 0)
-spread = 20.0
+emission_shape = 1
+emission_sphere_radius = 12.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
 initial_velocity_max = 80.0
 gravity = Vector3(0, 0, 0)
-color = Color(1, 1, 1, 0.7137255)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_jmkn3")
+color = Color(1, 1, 1, 0.25882354)
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08

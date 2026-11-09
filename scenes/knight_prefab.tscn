@@ -151,6 +151,6 @@ whiff_parry = ExtResource("12_gk8ll")
 block = ExtResource("12_xtp5v")
 
 [node name="Weapon Effect Origin" type="Node2D" parent="."]
-position = Vector2(20, 4)
+position = Vector2(11, 4)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

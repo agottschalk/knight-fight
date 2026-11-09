@@ -1,16 +1,10 @@
 extends Node2D
 
-@onready var _light := $PointLight2D
-@onready var _up := $UpParticles
-@onready var _down := $DownParticles
+@onready var _particles := $Particles
 
 func activate() -> void:
-	_up.emitting = true
-	_down.emitting = true
-	_light.enabled = true
+	_particles.emitting = true
 
 
 func deactivate() -> void:
-	_up.emitting = false
-	_down.emitting = false
-	_light.enabled = false
+	_particles.emitting = false
