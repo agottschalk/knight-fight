@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnm0vvldabwvm"]
 
 [ext_resource type="Script" uid="uid://y3qt31weaisn" path="res://scripts/fight_scene_manager.gd" id="1_ur8l8"]
+[ext_resource type="PackedScene" uid="uid://b2x450wadsklu" path="res://scenes/fire_weapon_effect.tscn" id="5_8i3qt"]
 [ext_resource type="PackedScene" uid="uid://nty66vivcb1c" path="res://scenes/knight_prefab.tscn" id="5_8ji1m"]
 [ext_resource type="Texture2D" uid="uid://b5uhgjk4ddlaa" path="res://sprites/scenery/outdoor platform.png" id="6_2a8y1"]
 [ext_resource type="Script" uid="uid://cphv21kdiff8a" path="res://scripts/fight_camera_controller.gd" id="6_bfl18"]
-[ext_resource type="SpriteFrames" uid="uid://oqdcgutdqela" path="res://anims/knight.tres" id="6_ur8l8"]
 [ext_resource type="Texture2D" uid="uid://l58f7tlku7bn" path="res://sprites/scenery/clouds and sky.png" id="7_2gorx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f43n0"]
@@ -55,7 +55,7 @@ WALK_SPEED = 20
 DASH_SPEED = 250
 BACKDASH_SPEED = 200
 player_num = 1
-sprites = ExtResource("6_ur8l8")
+weapon_effect = ExtResource("5_8i3qt")
 
 [node name="k2" parent="." instance=ExtResource("5_8ji1m")]
 position = Vector2(256, 88)
@@ -63,7 +63,7 @@ WALK_SPEED = 20
 DASH_SPEED = 250
 BACKDASH_SPEED = 200
 player_num = 2
-sprites = ExtResource("6_ur8l8")
+weapon_effect = ExtResource("5_8i3qt")
 
 [node name="Ground" type="StaticBody2D" parent="."]
 z_index = -5

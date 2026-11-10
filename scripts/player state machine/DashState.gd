@@ -32,5 +32,6 @@ func transition() -> void:
 		player.change_state(&"DashEnd")
 
 func leave() -> void:
+	player.deactivate_weapon_effect()
 	player.set_deferred(&"attack_priority", -1)
 	player.attackbox.set_deferred(&"disabled", true)

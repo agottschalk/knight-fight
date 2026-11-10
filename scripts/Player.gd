@@ -21,11 +21,9 @@ var charge_time : float
 var attack_priority : float
 var anim_finished : bool	# states that use this should reset the flag
 							# in thier 'enter' functions
-var direction: int:
+var direction: float:
 	get:
-		if anim.flip_h:
-			return -1
-		return 1
+		return scale.y	# godot converts negative x scale into negative y and 180 deg rotation
 var x_vel:
 	get:
 		return velocity.x * direction
@@ -41,7 +39,7 @@ var current_state:
 		return _sm.current_state
 
 @export var player_num : int
-@export var sprites : SpriteFrames
+@export var weapon_effect: PackedScene
 
 signal hitstop_request()
 
@@ -53,6 +51,8 @@ signal hitstop_request()
 @onready var bar : ProgressBar = $"ProgressBar"
 @onready var _hit_audio : AudioStreamPlayer2D = $"Hit Sounds Player"
 @onready var _audio : AudioStreamPlayer2D = $"General Sounds Player"
+@onready var _effect_pos := $"Weapon Effect Origin"
+var _weapon_effect
 var _sm : StateMachine
 
 #endregion
@@ -62,12 +62,17 @@ var _sm : StateMachine
 func _ready() -> void:
 	bar.visible = false
 	attackbox.set_deferred(&"disabled", true)
-	if sprites:
-		anim.sprite_frames = sprites
-	else:
-		push_warning("No sprites chosen for %s, default will be used." % self)
+	
 	if player_num == 0:
 		push_warning("Player number not set for %s" % self)
+	
+	if weapon_effect:
+		_weapon_effect = weapon_effect.instantiate()
+		add_child(_weapon_effect)
+		_weapon_effect.position = _effect_pos.position
+	else:
+		push_error("%s has no weapon effect assigned" % self)
+	
 	charge_time = 0
 	attack_priority = -1
 	
@@ -117,8 +122,10 @@ func reset(reset_point: Transform2D) -> void:
 
 
 func flip(default=true) -> void:
-	anim.flip_h = default
-	# _icon.flip_h = default
+	if default:
+		scale = Vector2(-1, 1)
+	else:
+		scale = Vector2(1, 1)
 
 
 func change_state(to: String) -> void:
@@ -135,6 +142,14 @@ func show_x() -> void:
 
 func hide_icon() -> void:
 	_icon.play(&"Blank")
+
+
+func activate_weapon_effect() -> void:
+	_weapon_effect.activate()
+
+
+func deactivate_weapon_effect() -> void:
+	_weapon_effect.deactivate()
 
 
 func request_hitstop(seconds: float, shake: float) -> void:
@@ -163,4 +178,5 @@ func play_parry_sound() -> void:
 
 func play_block_sound() -> void:
 	_audio.play_block()
+
 #endregion
