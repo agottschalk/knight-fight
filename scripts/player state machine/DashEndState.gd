@@ -17,7 +17,7 @@ func physics_update(delta: float) -> void:
 			player.x_vel, 0, player.DASH_SPEED * delta / (2 * recovery_time))
 
 func get_hit(other: Node2D) -> void:
-	player.show_x()
+	player.show_icon(&"X")
 	super(other)
 
 func transition() -> void:

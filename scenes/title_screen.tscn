@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtxprinxevrmt"]
+[gd_scene load_steps=8 format=3 uid="uid://dtxprinxevrmt"]
 
+[ext_resource type="Texture2D" uid="uid://c3osmj1khg17o" path="res://sprites/scenery/outdoor dirt platform.png" id="2_s4lrb"]
 [ext_resource type="Texture2D" uid="uid://l58f7tlku7bn" path="res://sprites/scenery/clouds and sky.png" id="3_cs5ya"]
 [ext_resource type="Script" uid="uid://u1d7w1rl3njh" path="res://scripts/start_btn.gd" id="3_s4lrb"]
-[ext_resource type="Texture2D" uid="uid://b5uhgjk4ddlaa" path="res://sprites/scenery/outdoor platform.png" id="6_u26n3"]
+[ext_resource type="AudioStream" uid="uid://cad315myr1lfb" path="res://sounds/files/DST-ReturnOfTowerDefenseTheme.mp3" id="4_mgrm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3qt"]
 size = Vector2(256, 64)
@@ -12,6 +13,10 @@ font_size = 44
 font_color = Color(1, 0, 0, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_s4lrb"]
+stream_count = 1
+stream_0 = ExtResource("4_mgrm8")
 
 [node name="Root" type="Node2D"]
 
@@ -38,7 +43,7 @@ shape = SubResource("RectangleShape2D_8i3qt")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
-texture = ExtResource("6_u26n3")
+texture = ExtResource("2_s4lrb")
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
@@ -57,5 +62,9 @@ offset_right = 206.0
 offset_bottom = 79.0
 text = "Start"
 script = ExtResource("3_s4lrb")
+
+[node name="Bkgd Music" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamPlaylist_s4lrb")
+autoplay = true
 
 [connection signal="button_up" from="Button" to="Button" method="_on_button_up"]

@@ -1,17 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnm0vvldabwvm"]
+[gd_scene load_steps=11 format=3 uid="uid://cnm0vvldabwvm"]
 
 [ext_resource type="Script" uid="uid://y3qt31weaisn" path="res://scripts/fight_scene_manager.gd" id="1_ur8l8"]
 [ext_resource type="PackedScene" uid="uid://b2x450wadsklu" path="res://scenes/fire_weapon_effect.tscn" id="5_8i3qt"]
 [ext_resource type="PackedScene" uid="uid://nty66vivcb1c" path="res://scenes/knight_prefab.tscn" id="5_8ji1m"]
-[ext_resource type="Texture2D" uid="uid://b5uhgjk4ddlaa" path="res://sprites/scenery/outdoor platform.png" id="6_2a8y1"]
+[ext_resource type="Texture2D" uid="uid://c3osmj1khg17o" path="res://sprites/scenery/outdoor dirt platform.png" id="6_023ua"]
 [ext_resource type="Script" uid="uid://cphv21kdiff8a" path="res://scripts/fight_camera_controller.gd" id="6_bfl18"]
 [ext_resource type="Texture2D" uid="uid://l58f7tlku7bn" path="res://sprites/scenery/clouds and sky.png" id="7_2gorx"]
+[ext_resource type="AudioStream" uid="uid://b6ouaulgf6byb" path="res://sounds/files/fight_looped.wav" id="7_023ua"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f43n0"]
 font_size = 28
 font_color = Color(1, 0, 0, 1)
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_023ua"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("7_023ua")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3qt"]
 size = Vector2(256, 64)
@@ -36,32 +42,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(128, 80)
+position = Vector2(183, 80)
+zoom = Vector2(0.8, 0.8)
 limit_bottom = 168
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 script = ExtResource("6_bfl18")
-max_zoom = 2.0
-min_zoom = 1.0
 
 [node name="Sky" type="Sprite2D" parent="Camera2D"]
 z_index = -5
+position = Vector2(0, -29)
 texture = ExtResource("7_2gorx")
 metadata/_edit_lock_ = true
 
+[node name="Bkgd Music" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = SubResource("AudioStreamPlaylist_023ua")
+autoplay = true
+bus = &"Music"
+
 [node name="k1" parent="." instance=ExtResource("5_8ji1m")]
-position = Vector2(112, 88)
-WALK_SPEED = 20
-DASH_SPEED = 250
-BACKDASH_SPEED = 200
+position = Vector2(112, 92)
 player_num = 1
 weapon_effect = ExtResource("5_8i3qt")
 
 [node name="k2" parent="." instance=ExtResource("5_8ji1m")]
-position = Vector2(256, 88)
-WALK_SPEED = 20
-DASH_SPEED = 250
-BACKDASH_SPEED = 200
+position = Vector2(256, 92)
 player_num = 2
 weapon_effect = ExtResource("5_8i3qt")
 
@@ -75,5 +80,5 @@ shape = SubResource("RectangleShape2D_8i3qt")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
-texture = ExtResource("6_2a8y1")
+texture = ExtResource("6_023ua")
 metadata/_edit_lock_ = true

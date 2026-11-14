@@ -15,12 +15,19 @@ func graphics_update() -> void:
 	player.bar.value = player.charge_time
 
 func get_hit(other: Node2D) -> void:
-	player.show_interro()
+	player.show_icon(&"Interrobang")
 	super(other)
 
 func transition():
 	if Input.is_action_just_released("p%s_attack" % player.player_num):
-		player.change_state(&"Dash")
+		# since player vel is relative to facing direction, but joysticks are
+		# absolute, have to multiply by player direction for it to work right
+		var joystick = Input.get_axis("p%s_left" % player.player_num, 
+				"p%s_right" % player.player_num) * player.direction
+		if joystick and joystick < 0:
+			player.change_state(&"Backdash")
+		else:
+			player.change_state(&"Dash")
 
 func leave() -> void:
 	player.bar.visible = false

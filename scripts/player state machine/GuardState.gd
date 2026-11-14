@@ -7,7 +7,7 @@ func enter() -> void:
 	cancellable = false
 	player.anim_finished = false
 	player.x_vel = 0
-	player.play_whiff_sound()
+	player.play_sound(&"Whiff")
 	anim.play(&"Shield")
 
 func get_hit(other: Node2D) -> void:
@@ -16,14 +16,14 @@ func get_hit(other: Node2D) -> void:
 		anim.modulate = Color(3,3,3)
 		other.change_state(&"DashEnd")
 		cancellable = true
-		player.play_parry_sound()
+		player.play_sound(&"Parry")
 		player.request_hitstop(0.5, 0)
 	elif anim.frame < 4:
 		player.x_vel = -player.DASH_SPEED * 5
 		other.change_state(&"DashEnd")
-		player.play_block_sound()
+		player.play_sound(&"Block")
 	else:
-		player.show_interro()
+		player.show_icon(&"Interrobang")
 		player.change_state(&"Hit")
 
 func physics_update(_delta: float) -> void:

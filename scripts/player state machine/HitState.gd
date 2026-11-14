@@ -5,8 +5,9 @@ func enter() -> void:
 	state_name = "P%s Hit" % player.player_num
 	anim.play(&"Hit")
 	anim.modulate = Color(1.0, 0.3, 0.3)
-	player.play_hit_sound()
+	player.play_sound(&"Hit")
 	player.request_hitstop(0.35, 4)
+	player.player_kod.emit()
 	player.x_vel = -70
 	player.y_vel = -100
 	player.collider.set_deferred(&"disabled", true)

@@ -2,8 +2,8 @@ extends Camera2D
 
 var player_1 : Node2D
 var player_2 : Node2D
-@export var zoom_ratio : float = 200.0
-@export var max_zoom : float = 1.5
+@export var zoom_ratio : float = 175
+@export var max_zoom : float = 2.2
 @export var min_zoom : float = 0.8
 
 var _shake_intensity : float = 0

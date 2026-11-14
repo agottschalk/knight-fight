@@ -19,6 +19,7 @@ func _ready() -> void:
 	if player_1:
 		p1_start.transform = player_1.transform
 		player_1.hitstop_request.connect(_hitstop)
+		player_1.player_kod.connect(_on_p1_kod)
 		camera.player_1 = player_1
 	else:
 		push_warning("Player 1 not assigned in scene manager")
@@ -26,17 +27,20 @@ func _ready() -> void:
 	if player_2:
 		p2_start.transform = player_2.transform
 		player_2.hitstop_request.connect(_hitstop)
+		player_2.player_kod.connect(_on_p2_kod)
 		camera.player_2 = player_2
 	else:
 		push_warning("Player 2 not assigned in scene manager")
 	
 	fight_text.text = ""
-	reset()
+	reset(true)
 
 
 func _process(_delta: float) -> void:
 	# placeholder for testing
 	if Input.is_action_just_pressed("ui_focus_next"):
+		p1_score = 0
+		p2_score = 0
 		reset()
 
 
@@ -54,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 		reset()
 
 
-func reset() -> void:
+func reset(reset_camera=true) -> void:
 	player_1.reset(p1_start.transform)
 	player_2.reset(p2_start.transform)
 	if player_1.position.x > player_2.position.x:
@@ -63,8 +67,9 @@ func reset() -> void:
 	else:
 		player_2.flip()
 		player_1.flip(false)
-	camera.center_on_fighters()
-	camera.reset_smoothing()
+	if reset_camera:
+		camera.center_on_fighters()
+		camera.reset_smoothing()
 	fight_text.text = ""
 	await get_tree().create_timer(0.3).timeout
 	fight_text.text = "%s - %s" % [p1_score, p2_score]

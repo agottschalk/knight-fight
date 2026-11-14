@@ -7,9 +7,9 @@ extends CharacterBody2D
 
 #region Properties and Constants
 
-@export var WALK_SPEED := 30
-@export var DASH_SPEED := 350
-@export var BACKDASH_SPEED := 250
+@export var WALK_SPEED := 20
+@export var DASH_SPEED := 250
+@export var BACKDASH_SPEED := 200
 const BACKDASH_TIME := 0.3
 const BACKDASH_ENDLAG := 0.1
 const CHARGE_RATIO := 0.25
@@ -42,6 +42,7 @@ var current_state:
 @export var weapon_effect: PackedScene
 
 signal hitstop_request()
+signal player_kod()
 
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collider : CollisionShape2D = $"Body Collider"
@@ -122,6 +123,8 @@ func reset(reset_point: Transform2D) -> void:
 
 
 func flip(default=true) -> void:
+	# this method of flipping only works the first time, after that
+	# will flip the sprite upside down
 	if default:
 		scale = Vector2(-1, 1)
 	else:
@@ -132,12 +135,8 @@ func change_state(to: String) -> void:
 	_sm.change_state(to)
 
 
-func show_interro() -> void:
-	_icon.play(&"Interrobang")
-
-
-func show_x() -> void:
-	_icon.play(&"X")
+func show_icon(icon_name: String) -> void:
+	_icon.play(icon_name)
 
 
 func hide_icon() -> void:
@@ -156,27 +155,21 @@ func request_hitstop(seconds: float, shake: float) -> void:
 	hitstop_request.emit(seconds, shake)
 
 
-func play_hit_sound() -> void:
-	_hit_audio.play()
-
-
-func play_dash_sound() -> void:
-	_audio.play_dash(charge_time)
-
-
-func play_backdash_sound() -> void:
-	_audio.play_backdash()
-
-
-func play_whiff_sound() -> void:
-	_audio.play_whiff()
-
-
-func play_parry_sound() -> void:
-	_audio.play_parry()
-
-
-func play_block_sound() -> void:
-	_audio.play_block()
+func play_sound(sound_name: String) -> void:
+	match sound_name:
+		&"Hit":
+			_hit_audio.play()
+		&"Dash":
+			_audio.play_dash(charge_time)
+		&"Backdash":
+			_audio.play_backdash()
+		&"Whiff":
+			_audio.play_whiff()
+		&"Parry":
+			_audio.play_parry()
+		&"Block":
+			_audio.play_block()
+		_:
+			push_error("No sound with name %s" % sound_name)
 
 #endregion

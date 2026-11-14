@@ -28,10 +28,7 @@ func graphics_update() -> void:
 
 func transition() -> void:
 	if Input.is_action_pressed("p%s_attack" % player.player_num):
-		if joystick < 0:
-			player.change_state(&"Backdash")
-		else:
-			player.change_state(&"Windup")
+		player.change_state(&"Windup")
 	elif Input.is_action_pressed("p%s_guard" % player.player_num):
 		player.change_state(&"Guard")
 

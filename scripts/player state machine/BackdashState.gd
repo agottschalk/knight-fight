@@ -7,7 +7,7 @@ func enter() -> void:
 	state_name = "P%s Backdash" % player.player_num
 	player.x_vel = -player.BACKDASH_SPEED
 	time_remaining = player.BACKDASH_TIME + player.BACKDASH_ENDLAG
-	player.play_backdash_sound()
+	player.play_sound(&"Backdash")
 
 func physics_update(delta: float) -> void:
 	time_remaining -= delta
