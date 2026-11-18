@@ -7,6 +7,11 @@ extends CharacterBody2D
 
 #region Properties and Constants
 
+# Transform basis X components for left and right facing objects
+# For these to work properly, all nodes using them must have an X scale of 1
+const LEFT_FACING_X := Vector2(-1, 0)
+const RIGHT_FACING_X := Vector2(1, 0)
+
 @export var WALK_SPEED := 20
 @export var DASH_SPEED := 250
 @export var BACKDASH_SPEED := 200
@@ -42,7 +47,7 @@ var current_state:
 @export var weapon_effect: PackedScene
 
 signal hitstop_request()
-signal player_kod()
+signal player_kod()	# emitted by Hit state
 
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 @onready var collider : CollisionShape2D = $"Body Collider"
@@ -122,13 +127,13 @@ func reset(reset_point: Transform2D) -> void:
 	change_state(&"Waiting")
 
 
-func flip(default=true) -> void:
-	# this method of flipping only works the first time, after that
-	# will flip the sprite upside down
-	if default:
-		scale = Vector2(-1, 1)
+func flip(face_left=true) -> void:
+	if face_left:
+		transform.x = LEFT_FACING_X
+		_icon.transform.x = LEFT_FACING_X
 	else:
-		scale = Vector2(1, 1)
+		transform.x = RIGHT_FACING_X
+		_icon.transform.x = RIGHT_FACING_X
 
 
 func change_state(to: String) -> void:
