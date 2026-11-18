@@ -14,13 +14,13 @@ font_color = Color(1, 0, 0, 1)
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3qt"]
+size = Vector2(256, 64)
+
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_023ua"]
 shuffle = true
 stream_count = 1
 stream_0 = ExtResource("7_023ua")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i3qt"]
-size = Vector2(256, 64)
 
 [node name="Root" type="Node2D" node_paths=PackedStringArray("player_1", "player_2")]
 script = ExtResource("1_ur8l8")
@@ -55,11 +55,6 @@ position = Vector2(0, -29)
 texture = ExtResource("7_2gorx")
 metadata/_edit_lock_ = true
 
-[node name="Bkgd Music" type="AudioStreamPlayer2D" parent="Camera2D"]
-stream = SubResource("AudioStreamPlaylist_023ua")
-autoplay = true
-bus = &"Music"
-
 [node name="k1" parent="." instance=ExtResource("5_8ji1m")]
 position = Vector2(112, 92)
 player_num = 1
@@ -82,3 +77,8 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
 texture = ExtResource("6_023ua")
 metadata/_edit_lock_ = true
+
+[node name="Bkgd Music" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamPlaylist_023ua")
+autoplay = true
+bus = &"Music"

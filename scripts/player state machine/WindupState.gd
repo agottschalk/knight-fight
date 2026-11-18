@@ -7,6 +7,7 @@ func enter():
 	player.bar.value = 0
 	player.bar.visible = true
 	anim.play(&"Dash Windup")
+	player.play_sound(&"Charge")
 
 func physics_update(delta: float) -> void:
 	player.charge_time += delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://nty66vivcb1c"]
+[gd_scene load_steps=26 format=3 uid="uid://nty66vivcb1c"]
 
 [ext_resource type="Script" uid="uid://djh17dgnaut2f" path="res://scripts/Player.gd" id="1_q40kv"]
 [ext_resource type="Shader" uid="uid://clqhtw3upgfv6" path="res://player_sprite.gdshader" id="2_kvgpa"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://c1wxkd5ybsn75" path="res://sounds/files/clang - Marker #4.wav" id="11_fhq1b"]
 [ext_resource type="AudioStream" uid="uid://cbr2eia1u3o7w" path="res://sounds/streams/spammable_sounds.tres" id="12_gk8ll"]
 [ext_resource type="AudioStream" uid="uid://45reoitt7vx" path="res://sounds/files/sfx_sounds_impact6.wav" id="12_xtp5v"]
+[ext_resource type="AudioStream" uid="uid://dtfjvj7notwxh" path="res://sounds/files/sfx_sounds_powerup16.wav" id="14_gk8ll"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_osnhv"]
 radius = 7.0
@@ -149,6 +150,7 @@ backdash = ExtResource("10_y8pws")
 parry = ExtResource("11_fhq1b")
 whiff_parry = ExtResource("12_gk8ll")
 block = ExtResource("12_xtp5v")
+charge = ExtResource("14_gk8ll")
 
 [node name="Weapon Effect Origin" type="Node2D" parent="."]
 position = Vector2(11, 4)

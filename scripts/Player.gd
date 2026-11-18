@@ -174,6 +174,8 @@ func play_sound(sound_name: String) -> void:
 			_audio.play_parry()
 		&"Block":
 			_audio.play_block()
+		&"Charge":
+			_audio.play_charge()
 		_:
 			push_error("No sound with name %s" % sound_name)
 

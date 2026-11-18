@@ -7,7 +7,9 @@ extends AudioStreamPlayer2D
 @export var parry: AudioStream
 @export var whiff_parry: AudioStream
 @export var block: AudioStream
+@export var charge: AudioStream
 
+# cache original pitch and volume, allows resetting later
 @onready var _base_vol = volume_db
 @onready var _base_pitch = pitch_scale
 
@@ -53,4 +55,11 @@ func play_block() -> void:
 	volume_db = _base_vol
 	pitch_scale = _base_pitch
 	stream = block
+	play()
+
+
+func play_charge() -> void:
+	volume_db = -4
+	pitch_scale = _base_pitch
+	stream = charge
 	play()
