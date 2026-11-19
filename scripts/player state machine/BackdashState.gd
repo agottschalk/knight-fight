@@ -11,8 +11,6 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 	time_remaining -= delta
-	player.x_vel = move_toward(player.x_vel, 0, 
-			delta * player.BACKDASH_SPEED / player.BACKDASH_TIME)
 
 func graphics_update() -> void:
 	anim.play(&"Backdash")

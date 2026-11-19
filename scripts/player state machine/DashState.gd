@@ -21,10 +21,12 @@ func get_hit(other: Node2D) -> void:
 
 func physics_update(delta: float) -> void:
 	active_frames -= delta
+	if active_frames > 0:
+		player.x_vel = player.DASH_SPEED
 	player.attack_priority += delta
 
 func transition() -> void:
-	if active_frames < 0:
+	if player.x_vel < player.DASH_SPEED / 2.0:
 		player.hide_icon()	# only hide if transitioning naturally, leave icon if hit
 		player.change_state(&"DashEnd")
 

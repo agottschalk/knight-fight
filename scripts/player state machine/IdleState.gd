@@ -15,8 +15,6 @@ func physics_update(_delta: float) -> void:
 			"p%s_right" % player.player_num) * player.direction
 	if joystick:
 		player.x_vel = joystick * player.WALK_SPEED
-	else:
-		player.x_vel = move_toward(player.x_vel, 0, player.WALK_SPEED)
 
 func graphics_update() -> void:
 	if joystick > 0:
