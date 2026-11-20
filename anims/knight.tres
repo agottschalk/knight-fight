@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=39 format=3 uid="uid://oqdcgutdqela"]
+[gd_resource type="SpriteFrames" load_steps=38 format=3 uid="uid://oqdcgutdqela"]
 
 [ext_resource type="Texture2D" uid="uid://b41byis7fml4r" path="res://sprites/tiny knight/Fall.png" id="1_pr7v5"]
 [ext_resource type="Texture2D" uid="uid://bfc6mpv508g28" path="res://sprites/tiny knight/Walk.png" id="2_8ygip"]
@@ -37,11 +37,7 @@ region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr7v5"]
 atlas = ExtResource("3_osvcn")
-region = Rect2(80, 6, 40, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w74xn"]
-atlas = ExtResource("3_osvcn")
-region = Rect2(200, 0, 40, 30)
+region = Rect2(120, 0, 40, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t88hi"]
 atlas = ExtResource("3_osvcn")
@@ -177,9 +173,6 @@ animations = [{
 "speed": 18.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w74xn")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t88hi")
 }, {

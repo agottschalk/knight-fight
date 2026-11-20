@@ -12,13 +12,14 @@ extends CharacterBody2D
 const LEFT_FACING_X := Vector2(-1, 0)
 const RIGHT_FACING_X := Vector2(1, 0)
 
-@export var WALK_SPEED := 18
-@export var DASH_SPEED := 150
-@export var BACKDASH_SPEED := 125
-@export var DRAG := 350
+const WALK_SPEED := 18
+const MAX_DASH_SPEED := 200
+const MIN_DASH_SPEED := 0.4	# as a fraction of maximum dash speed
+const BACKDASH_SPEED := 150
+const DRAG := 450
 const BACKDASH_TIME := 0.3
 const BACKDASH_ENDLAG := 0.1
-const CHARGE_RATIO := 0.25
+const CHARGE_RATIO := 0.1
 const RECOVERY_RATIO: float = 2.0 / 3
 const MAX_CHARGE: float = 0.75	# seconds of charge time
 
@@ -132,6 +133,7 @@ func reset(reset_point: Transform2D) -> void:
 
 
 func flip(face_left=true) -> void:
+	# flipping the icon when flipping player unflips the icon
 	if face_left:
 		transform.x = LEFT_FACING_X
 		_icon.transform.x = LEFT_FACING_X
