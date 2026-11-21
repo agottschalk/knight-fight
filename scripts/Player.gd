@@ -51,7 +51,6 @@ signal hitstop_request()
 @onready var bar : ProgressBar = $"ProgressBar"
 @onready var _hit_audio : AudioStreamPlayer2D = $"Hit Sounds Player"
 @onready var _audio : AudioStreamPlayer2D = $"General Sounds Player"
-@onready var _effect_pos := $"Weapon Effect Origin"
 var _weapon_effect
 var _sm : StateMachine
 
@@ -69,7 +68,7 @@ func _ready() -> void:
 	if weapon_effect:
 		_weapon_effect = weapon_effect.instantiate()
 		add_child(_weapon_effect)
-		_weapon_effect.position = _effect_pos.position
+		#_weapon_effect.position = position
 	else:
 		push_error("%s has no weapon effect assigned" % self)
 	

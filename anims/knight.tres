@@ -37,6 +37,7 @@ region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr7v5"]
 atlas = ExtResource("3_osvcn")
+<<<<<<< Updated upstream
 region = Rect2(80, 6, 40, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ygip"]
@@ -50,6 +51,9 @@ region = Rect2(160, 6, 40, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_a2hi7"]
 atlas = ExtResource("3_osvcn")
 region = Rect2(200, 6, 40, 24)
+=======
+region = Rect2(120, 6, 40, 24)
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t88hi"]
 atlas = ExtResource("3_osvcn")
@@ -202,7 +206,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Dash End",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
