@@ -13,7 +13,8 @@ func physics_update(delta: float) -> void:
 	player.charge_time += delta
 
 func graphics_update() -> void:
-	player.bar.value = player.charge_time
+	# the extra .05 helps the bar visually reach max before disappearing
+	player.bar.value = 0.05 + player.charge_time / player.MAX_CHARGE
 
 func get_hit(other: Node2D) -> void:
 	player.show_icon(&"Interrobang")
@@ -29,6 +30,9 @@ func transition():
 			player.change_state(&"Backdash")
 		else:
 			player.change_state(&"Dash")
+	elif player.charge_time > player.MAX_CHARGE:
+		player.change_state(&"Dash")
+		
 
 func leave() -> void:
 	player.bar.visible = false

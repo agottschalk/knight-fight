@@ -13,13 +13,13 @@ const LEFT_FACING_X := Vector2(-1, 0)
 const RIGHT_FACING_X := Vector2(1, 0)
 
 const WALK_SPEED := 18
-const MAX_DASH_SPEED := 200
-const MIN_DASH_SPEED := 0.4	# as a fraction of maximum dash speed
+const MAX_DASH_SPEED := 150
+const MIN_DASH_SPEED := 0.5	# as a fraction of maximum dash speed
 const BACKDASH_SPEED := 150
 const DRAG := 450
 const BACKDASH_TIME := 0.3
 const BACKDASH_ENDLAG := 0.1
-const CHARGE_RATIO := 0.1
+const CHARGE_RATIO := 0.5
 const RECOVERY_RATIO: float = 2.0 / 3
 const MAX_CHARGE: float = 0.75	# seconds of charge time
 

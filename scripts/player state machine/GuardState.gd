@@ -11,7 +11,7 @@ func enter() -> void:
 	anim.play(&"Shield")
 
 func get_hit(other: Node2D) -> void:
-	if anim.frame == 0:	# to change the perfect parry Window, change the 
+	if anim.frame < 2:	# to change the perfect parry Window, change the 
 						# duration of the first frame in the animation player
 		anim.modulate = Color(3,3,3)
 		other.change_state(&"DashEnd")
@@ -38,4 +38,3 @@ func transition() -> void:
 
 func leave() -> void:
 	anim.modulate = Color(1,1,1)
-	player.x_vel = 0

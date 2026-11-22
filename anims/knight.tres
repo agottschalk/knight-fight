@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=38 format=3 uid="uid://oqdcgutdqela"]
+[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://oqdcgutdqela"]
 
 [ext_resource type="Texture2D" uid="uid://b41byis7fml4r" path="res://sprites/tiny knight/Fall.png" id="1_pr7v5"]
 [ext_resource type="Texture2D" uid="uid://bfc6mpv508g28" path="res://sprites/tiny knight/Walk.png" id="2_8ygip"]
@@ -37,7 +37,7 @@ region = Rect2(0, 0, 22, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr7v5"]
 atlas = ExtResource("3_osvcn")
-region = Rect2(120, 0, 40, 30)
+region = Rect2(120, 6, 40, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t88hi"]
 atlas = ExtResource("3_osvcn")
@@ -83,15 +83,7 @@ region = Rect2(88, 0, 22, 24)
 atlas = ExtResource("6_pr7v5")
 region = Rect2(0, 0, 22, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n8vn5"]
-atlas = ExtResource("6_pr7v5")
-region = Rect2(0, 0, 22, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m6021"]
-atlas = ExtResource("6_pr7v5")
-region = Rect2(22, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uak1j"]
 atlas = ExtResource("6_pr7v5")
 region = Rect2(22, 0, 22, 24)
 
@@ -223,30 +215,24 @@ animations = [{
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_ngr8t")
-}, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n8vn5")
+"texture": SubResource("AtlasTexture_ngr8t")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m6021")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uak1j")
-}, {
-"duration": 2.0,
 "texture": SubResource("AtlasTexture_tufa3")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_sgbg0")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6wpyx")
 }],
 "loop": false,
 "name": &"Shield",
-"speed": 20.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -20,10 +20,10 @@ radius = 7.0
 height = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57w1i"]
-size = Vector2(15, 22)
+size = Vector2(12, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7psqj"]
-size = Vector2(28, 20)
+size = Vector2(18, 6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yvuf7"]
 shader = ExtResource("2_kvgpa")
@@ -101,6 +101,7 @@ monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_57w1i")
 metadata/_edit_lock_ = true
 
@@ -112,13 +113,14 @@ monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox"]
+position = Vector2(8, 4)
 shape = SubResource("RectangleShape2D_7psqj")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_yvuf7")
 sprite_frames = ExtResource("3_q40kv")
-animation = &"Dash"
+animation = &"Shield"
 metadata/_edit_lock_ = true
 
 [node name="Icon" type="AnimatedSprite2D" parent="."]
