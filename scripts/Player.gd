@@ -12,14 +12,16 @@ extends CharacterBody2D
 const LEFT_FACING_X := Vector2(-1, 0)
 const RIGHT_FACING_X := Vector2(1, 0)
 
-@export var WALK_SPEED := 20
-@export var DASH_SPEED := 250
-@export var BACKDASH_SPEED := 200
+const WALK_SPEED := 18
+const MAX_DASH_SPEED := 150
+const MIN_DASH_SPEED := 0.5	# as a fraction of maximum dash speed
+const BACKDASH_SPEED := 150
+const DRAG := 450
 const BACKDASH_TIME := 0.3
 const BACKDASH_ENDLAG := 0.1
-const CHARGE_RATIO := 0.25
+const CHARGE_RATIO := 0.5
 const RECOVERY_RATIO: float = 2.0 / 3
-const MAX_CHARGE: float = 1.0	# seconds of charge time
+const MAX_CHARGE: float = 0.75	# seconds of charge time
 
 
 var charge_time : float
@@ -92,9 +94,12 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	else:
+		x_vel = move_toward(x_vel, 0, DRAG * delta)
 	if hurtbox.has_overlapping_areas():
 		for area in hurtbox.get_overlapping_areas():
 			_on_hurtbox_area_entered(area)
+	
 	current_state.physics_update(delta)
 	
 	move_and_slide()
@@ -128,6 +133,7 @@ func reset(reset_point: Transform2D) -> void:
 
 
 func flip(face_left=true) -> void:
+	# flipping the icon when flipping player unflips the icon
 	if face_left:
 		transform.x = LEFT_FACING_X
 		_icon.transform.x = LEFT_FACING_X

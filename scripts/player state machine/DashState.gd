@@ -2,13 +2,15 @@ class_name DashState
 extends BasePlayerState
 
 var active_frames	# measured in seconds, despite name
+var speed
 
 func enter() -> void:
 	state_name = "P%s Dash" % player.player_num
 	player.charge_time = clamp(player.charge_time, 0, player.MAX_CHARGE)
 	player.attack_priority = 1
 	active_frames = player.charge_time * player.CHARGE_RATIO
-	player.x_vel = player.DASH_SPEED
+	speed = player.MAX_DASH_SPEED * max(player.MIN_DASH_SPEED, player.charge_time / player.MAX_CHARGE)
+	player.x_vel = speed
 	player.attackbox.set_deferred(&"disabled", false)
 	player.play_sound(&"Dash")
 	anim.play(&"Dash")
@@ -21,10 +23,12 @@ func get_hit(other: Node2D) -> void:
 
 func physics_update(delta: float) -> void:
 	active_frames -= delta
+	if active_frames > 0:
+		player.x_vel = speed
 	player.attack_priority += delta
 
 func transition() -> void:
-	if active_frames < 0:
+	if player.x_vel < speed / 2.0:
 		player.hide_icon()	# only hide if transitioning naturally, leave icon if hit
 		player.change_state(&"DashEnd")
 
