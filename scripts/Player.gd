@@ -71,8 +71,15 @@ func _ready() -> void:
 	bar.visible = false
 	attackbox.set_deferred(&"disabled", true)
 	
-	if player_num == 0:
-		push_warning("Player number not set for %s" % self)
+	match player_num:
+		1:
+			anim.set_instance_shader_parameter("new_tassle",ColorPalettes.P1[0])
+			anim.set_instance_shader_parameter("new_shadow",ColorPalettes.P1[1])
+		2:
+			anim.set_instance_shader_parameter("new_tassle",ColorPalettes.P2[0])
+			anim.set_instance_shader_parameter("new_shadow",ColorPalettes.P2[1])
+		_:
+			push_warning("Player number not set for %s" % self)
 	
 	if weapon_effect:
 		_weapon_effect = weapon_effect.instantiate()

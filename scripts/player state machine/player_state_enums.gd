@@ -1,0 +1,3 @@
+extends Node
+
+enum States {BACKDASH, DASH, DASH_END, GUARD, HIT, IDLE, WAITING, WINDUP}

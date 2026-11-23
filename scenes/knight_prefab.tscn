@@ -119,6 +119,8 @@ metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_yvuf7")
+instance_shader_parameters/new_shadow = Color(0.5294118, 0.12156863, 0.13725491, 1)
+instance_shader_parameters/new_tassle = Color(0.6666667, 0.15294118, 0.17254902, 1)
 sprite_frames = ExtResource("3_q40kv")
 animation = &"Shield"
 metadata/_edit_lock_ = true
