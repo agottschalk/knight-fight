@@ -59,7 +59,6 @@ signal player_kod()	# emitted by Hit state
 @onready var bar : ProgressBar = $"ProgressBar"
 @onready var _hit_audio : AudioStreamPlayer2D = $"Hit Sounds Player"
 @onready var _audio : AudioStreamPlayer2D = $"General Sounds Player"
-@onready var _effect_pos := $"Weapon Effect Origin"
 var _weapon_effect
 var _sm : StateMachine
 
@@ -71,6 +70,13 @@ func _ready() -> void:
 	bar.visible = false
 	attackbox.set_deferred(&"disabled", true)
 	
+	if weapon_effect:
+		_weapon_effect = weapon_effect.instantiate()
+		add_child(_weapon_effect)
+		_weapon_effect.palette_number = player_num
+	else:
+		push_error("%s has no weapon effect assigned" % self)
+	
 	match player_num:
 		1:
 			anim.set_instance_shader_parameter("new_tassle",ColorPalettes.P1[0])
@@ -80,13 +86,6 @@ func _ready() -> void:
 			anim.set_instance_shader_parameter("new_shadow",ColorPalettes.P2[1])
 		_:
 			push_warning("Player number not set for %s" % self)
-	
-	if weapon_effect:
-		_weapon_effect = weapon_effect.instantiate()
-		add_child(_weapon_effect)
-		_weapon_effect.position = _effect_pos.position
-	else:
-		push_error("%s has no weapon effect assigned" % self)
 	
 	charge_time = 0
 	attack_priority = -1
