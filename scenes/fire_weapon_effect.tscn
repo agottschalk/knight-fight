@@ -17,10 +17,11 @@ script = ExtResource("2_xnm7l")
 [node name="Particles" type="GPUParticles2D" parent="."]
 z_index = 3
 material = SubResource("ShaderMaterial_tbjaq")
-position = Vector2(8, 4)
+position = Vector2(13, 4)
 emitting = false
 amount = 16
 texture = ExtResource("2_fhjvi")
 lifetime = 0.2
 preprocess = 0.05
+local_coords = true
 process_material = ExtResource("3_fhjvi")

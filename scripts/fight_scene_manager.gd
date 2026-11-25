@@ -48,11 +48,13 @@ func _physics_process(_delta: float) -> void:
 	if player_1.attack_priority > 0 and \
 			player_1.attack_priority >= player_2.attack_priority:
 		player_1.activate_weapon_effect()
-		player_2.deactivate_weapon_effect()
+	else:
+		player_1.deactivate_weapon_effect()
 	if player_2.attack_priority > 0 and \
 			player_2.attack_priority >= player_1.attack_priority:
 		player_2.activate_weapon_effect()
-		player_1.deactivate_weapon_effect()
+	else:
+		player_2.deactivate_weapon_effect()
 	
 	if player_1.position.y > kill_plane or player_2.position.y > kill_plane:
 		reset()
