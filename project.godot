@@ -24,6 +24,7 @@ ColorPalettes="*res://scripts/ColorPalettes.gd"
 
 window/size/viewport_width=288
 window/size/viewport_height=162
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 

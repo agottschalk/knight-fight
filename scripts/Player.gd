@@ -177,7 +177,7 @@ func play_sound(sound_name: String) -> void:
 		&"Hit":
 			_hit_audio.play()
 		&"Dash":
-			_audio.play_dash(charge_time)
+			_audio.play_dash(charge_time / MAX_CHARGE)
 		&"Backdash":
 			_audio.play_backdash()
 		&"Whiff":
